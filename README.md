@@ -1,3 +1,6 @@
 ```bash
 go get -u github.com/anthonynsimon/bild/...
+go get github.com/betacraft/yaag/...
+go get -u github.com/kataras/iris
+go get -u github.com/iris-contrib/httpexpect
 ```
