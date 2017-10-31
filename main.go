@@ -9,5 +9,6 @@ func main() {
 	//web.IrisServe()
 	//web.IrisServeWithBasic().Run(iris.Addr(":8080"))
 	//web.CacheServe().Run(iris.Addr(":8080"))
-	web.MiddleWareServe().Run(iris.Addr(":8080"))
+	//web.MiddleWareServe().Run(iris.Addr(":8080"))
+	web.Middleware2Serve().Run(iris.Addr(":8080"))
 }
