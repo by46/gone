@@ -11,5 +11,7 @@ func main() {
 	//web.MiddleWareServe().Run(iris.Addr(":8080"))
 	//web.Middleware2Serve().Run(iris.Addr(":8080"))
 	//web.EchoServe().Start(":8080")
-	web.EchoGracefulServe()
+	//web.EchoGracefulServe()
+	//web.EchoStreamServe().Start(":8080")
+	web.EchoMiddlewareServe().Start(":8080")
 }
