@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/by46/gone/web"
 	"net/http"
+	"github.com/by46/gone/web"
 )
 
 func main() {
@@ -17,8 +17,10 @@ func main() {
 	//web.EchoMiddlewareServe().Start(":8080")
 	//handler := web.GinServe()
 	//handler := web.NativeServe()
-	handler := web.GinRouterServe()
-
+	//handler := web.GinRouterServe()
+	//handler := basic.GameServe()
+	//handler := web.EchoWSServe()
+	handler := web.EchoGorillaServe()
 	srv := &http.Server{
 		Addr:    ":8080",
 		Handler: handler,
