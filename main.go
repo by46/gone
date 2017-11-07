@@ -20,7 +20,8 @@ func main() {
 	//handler := web.GinRouterServe()
 	//handler := basic.GameServe()
 	//handler := web.EchoWSServe()
-	handler := web.EchoGorillaServe()
+	//handler := web.EchoGorillaServe()
+	handler := web.EchoGorilla2Serve()
 	srv := &http.Server{
 		Addr:    ":8080",
 		Handler: handler,
