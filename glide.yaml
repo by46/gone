@@ -1,0 +1,23 @@
+package: github.com/by46/gone
+import:
+- package: github.com/anthonynsimon/bild
+  version: v0.10.0
+  subpackages:
+  - effect
+  - imgio
+  - transform
+- package: github.com/gin-gonic/gin
+  version: v1.2
+- package: github.com/kataras/iris
+  version: v8.5.4
+  subpackages:
+  - cache
+  - context
+  - middleware/basicauth
+  - mvc
+- package: github.com/labstack/echo
+  version: 3.2.3
+  subpackages:
+  - middleware
+- package: github.com/tylerb/graceful
+  version: v1.2.15
