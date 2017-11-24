@@ -1,16 +1,17 @@
 package image
 
 import (
-	"github.com/anthonynsimon/bild/imgio"
-	"github.com/disintegration/imaging"
-	"testing"
-	"github.com/stretchr/testify/assert"
+	"fmt"
+	"image"
 	"image/color"
 	"image/draw"
-	"image"
-	"fmt"
+	"testing"
+
 	"github.com/anthonynsimon/bild/adjust"
+	"github.com/anthonynsimon/bild/imgio"
 	"github.com/anthonynsimon/bild/util"
+	"github.com/disintegration/imaging"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestImageServe(t *testing.T) {
