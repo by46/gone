@@ -47,23 +47,34 @@ func (r *Radius) Bounds() image.Rectangle {
 }
 
 func (r *Radius) At(x, y int) color.Color {
-	xx, yy, rr := x*x, y*y, r.r*r.r
-	if xx+yy < rr {
-		return color.Alpha{255}
+	if x >= r.r || y >= r.r {
+		return color.White
 	}
-	return color.Alpha{0}
+	x1 := float64(x-r.r) + 0.5
+	y1 := float64(y-r.r) + 0.5
+	r1 := float64(r.r)
+	r2 := float64(r.r + 1)
+	xx, yy, rr := x1*x1, y1*y1, r1*r1
+	rr2 := r2 * r2
+	if xx+yy <= rr {
+		return color.White
+	} else if xx+yy <= rr2 {
+
+	}
+	return color.Transparent
 }
 
 func TestImageMask(t *testing.T) {
-	dst, err := imgio.Open("1.jpg")
+	dst, err := imgio.Open("lena.png")
 	if err != nil {
 		fmt.Printf(err.Error())
 	}
 	src := image.NewRGBA(dst.Bounds())
-	radius := NewRadius(dst.Bounds(), 50)
+	radius := NewRadius(dst.Bounds(), 100)
 	draw.DrawMask(src, dst.Bounds(), dst, image.ZP, radius, image.ZP, draw.Over)
-	imaging.Save(src, "file2.jpg")
+	imaging.Save(src, "lena-radius2.png")
 }
+
 func TestGrayImage(t *testing.T) {
 	dst, err := imgio.Open("lena.png")
 	if err != nil {
@@ -133,5 +144,23 @@ func TestGrayImageCustom(t *testing.T) {
 	err = imaging.Save(dst, "lena-gray.png")
 	if err != nil {
 		fmt.Printf(err.Error())
+	}
+}
+
+func InCircle(x, y, r int) bool {
+	x1 := float64(x) + 0.5
+	y1 := float64(y) + 0.5
+	r1 := float64(r)
+	return x1*x1+y1*y1 < r1*r1
+}
+
+func TestPrintCircle(t *testing.T) {
+	r := 8
+	for i := 1; i <= r; i++ {
+		for j := 1; j <= r; j++ {
+
+			fmt.Printf("(%v, %v, %v) ", i, j, InCircle(i, j, r))
+		}
+		fmt.Println("")
 	}
 }
