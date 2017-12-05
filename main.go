@@ -2,7 +2,8 @@ package main
 
 import (
 	"net/http"
-	"github.com/by46/gone/web"
+
+	"github.com/by46/gone/raft"
 )
 
 func main() {
@@ -21,7 +22,8 @@ func main() {
 	//handler := basic.GameServe()
 	//handler := web.EchoWSServe()
 	//handler := web.EchoGorillaServe()
-	handler := web.EchoGorilla2Serve()
+	//handler := web.EchoGorilla2Serve()
+	handler := raft.Serve()
 	srv := &http.Server{
 		Addr:    ":8080",
 		Handler: handler,
