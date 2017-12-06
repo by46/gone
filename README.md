@@ -9,4 +9,6 @@ go get -u github.com/facebookgo/grace/gracehttp
 go get -u github.com/tylerb/graceful
 go get -v -u github.com/disintegration/imaging
 go get -v -u github.com/parnurzeal/gorequest
+go get -v -u github.com/Kodeworks/golang-image-ico
+go get -v -u github.com/dkua/go-ico
 ```
