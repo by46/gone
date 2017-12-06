@@ -11,6 +11,6 @@ func TestRadius(t *testing.T) {
 	img, err := imaging.Open("sample.png")
 	assert.Nil(t, err)
 	img = Radius1(img, 100)
-	err = imaging.Save(img, "lena-radius.png")
+	err = imaging.Save(img, "lena-radius2.png")
 	assert.Nil(t, err)
 }

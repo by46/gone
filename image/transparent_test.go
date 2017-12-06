@@ -8,7 +8,7 @@ import (
 
 	"github.com/anthonynsimon/bild/adjust"
 	"github.com/anthonynsimon/bild/imgio"
-	"github.com/anthonynsimon/bild/util"
+	_ "github.com/anthonynsimon/bild/util"
 	"github.com/disintegration/imaging"
 	"github.com/stretchr/testify/assert"
 )
@@ -43,9 +43,9 @@ func setColor(input *image.RGBA, col color.RGBA) *image.RGBA {
 	return adjust.Apply(input, fn)
 }
 func setOpacity(c color.RGBA, opacity float64) color.RGBA {
-	h, s, l := util.RGBToHSL(c)
-	s = s * opacity
-	return util.HSLToRGB(h, s, l)
+	//h, s, l := util.RGBToHSL(c)
+	//s = s * opacity
+	//return util.HSLToRGB(h, s, l)
 	c.R = uint8(float64(c.R) * opacity)
 	c.G = uint8(float64(c.G) * opacity)
 	c.B = uint8(float64(c.B) * opacity)
@@ -56,7 +56,7 @@ func setOpacity(c color.RGBA, opacity float64) color.RGBA {
 func TestTransparent3(t *testing.T) {
 	dst := image.NewNRGBA(image.Rect(0, 0, 1000, 200))
 	cube := image.NewRGBA(image.Rect(0, 0, 100, 100))
-	c := color.RGBA{255, 133, 123, 255}
+	c := color.RGBA{48, 72, 20, 255}
 	for i := 1; i <= 10; i += 1 {
 		r := float64(i) * 0.1
 		cube = setColor(cube, setOpacity(c, r))
