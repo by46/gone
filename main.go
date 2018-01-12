@@ -3,7 +3,7 @@ package main
 import (
 	"net/http"
 
-	"github.com/by46/gone/raft"
+	"github.com/by46/gone/web"
 )
 
 func main() {
@@ -23,7 +23,7 @@ func main() {
 	//handler := web.EchoWSServe()
 	//handler := web.EchoGorillaServe()
 	//handler := web.EchoGorilla2Serve()
-	handler := raft.Serve()
+	handler := web.ServeEchoCache()
 	srv := &http.Server{
 		Addr:    ":8080",
 		Handler: handler,
