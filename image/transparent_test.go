@@ -36,6 +36,39 @@ func TestTransparent2(t *testing.T) {
 	assert.Nil(t, err)
 }
 
+func TestFill(t *testing.T) {
+	dst, err := imaging.Open("nasa.jpg")
+	assert.Nil(t, err)
+	writer, err := os.OpenFile("lena-fill.jpeg", os.O_RDWR|os.O_CREATE, os.ModePerm)
+	defer writer.Close()
+	assert.Nil(t, err)
+	dst = imaging.Fill(dst, 1200, 900, imaging.Center, imaging.Lanczos)
+	err = imaging.Encode(writer, dst, imgio.JPEG)
+	assert.Nil(t, err)
+}
+
+func TestFit(t *testing.T) {
+	dst, err := imaging.Open("nasa.jpg")
+	assert.Nil(t, err)
+	writer, err := os.OpenFile("lena-fit.jpeg", os.O_RDWR|os.O_CREATE, os.ModePerm)
+	defer writer.Close()
+	assert.Nil(t, err)
+	dst = imaging.Fit(dst, 250, 200, imaging.Lanczos)
+	err = imaging.Encode(writer, dst, imgio.JPEG)
+	assert.Nil(t, err)
+}
+
+func TestResize(t *testing.T) {
+	dst, err := imaging.Open("lena.png")
+	assert.Nil(t, err)
+	writer, err := os.OpenFile("lena-resize2.jpeg", os.O_RDWR|os.O_CREATE, os.ModePerm)
+	defer writer.Close()
+	assert.Nil(t, err)
+	dst = imaging.Fit(dst, 300, 200, imaging.Lanczos)
+	err = imaging.Encode(writer, dst, imgio.JPEG)
+	assert.Nil(t, err)
+}
+
 func setColor(input *image.RGBA, col color.RGBA) *image.RGBA {
 	fn := func(c color.RGBA) color.RGBA {
 		return col
