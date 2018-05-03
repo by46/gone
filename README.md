@@ -13,3 +13,8 @@ go get -v -u github.com/Kodeworks/golang-image-ico
 go get -v -u github.com/dkua/go-ico
 go get -v -u github.com/google/go-querystring
 ```
+
+
+```
+protoc --go_out=paths=source_relative:. im/*.proto
+```

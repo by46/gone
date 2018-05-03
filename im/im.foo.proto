@@ -1,0 +1,19 @@
+syntax = "proto2";
+package im;
+
+message Foo {
+    required int32 Id = 1;
+    extensions 100 to 199;
+}
+
+extend Foo {
+    optional string Name = 100;
+}
+
+message Info {
+    oneof test_oneof {
+        string Name = 4;
+        bool Marriage = 5;
+        string Address = 6;
+    }
+}
