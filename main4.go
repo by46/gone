@@ -28,6 +28,16 @@ func main() {
 
 	info3 := &im.Author{}
 	info3.Ages = append(info3.Ages, 1)
-	info4 := &im.
-	info4.ex
+	info4 := &im.Info{}
+	info4.TestOneof = &im.Info_Name{Name: "hello"}
+	info5 := info4.GetTestOneof()
+	switch info5.(type) {
+	case *im.Info_Name:
+		fmt.Printf("Name fields setting %v", info4.GetName())
+	default:
+		print("default")
+	}
+
+	info6 := &im.DFIS{}
+	x, xx := info6.Descriptor()
 }
