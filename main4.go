@@ -2,12 +2,21 @@ package main
 
 import (
 	"fmt"
+	"net"
 
 	"github.com/by46/gone/im"
 	"github.com/golang/protobuf/proto"
 	"github.com/labstack/gommon/log"
+	"golang.org/x/net/context"
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/reflection"
 )
 
+type server struct{}
+
+func (s *server) SayHello(ctx context.Context, in *im.HelloRequest) (*im.HelloReply, error) {
+	return &im.HelloReply{Message: in.Name,}, nil
+}
 func main() {
 	info := &im.HelloWorld{
 		Str: proto.String("hello world"),
@@ -37,7 +46,10 @@ func main() {
 	default:
 		print("default")
 	}
+	l, err := net.Listen("tcp", ":8085")
 
-	info6 := &im.DFIS{}
-	x, xx := info6.Descriptor()
+	s := grpc.NewServer()
+	im.RegisterGreeterServer(s, &server{})
+	reflection.Register(s)
+	s.Serve(l)
 }
