@@ -1,0 +1,9 @@
+syntax = "proto2";
+package im;
+enum FOO { X = 17; };
+message HelloWorld
+{
+required int32     id = 1;  // Id
+required string    str = 2;  // Str
+optional int32     opt = 3;  // Opt optional field
+}
