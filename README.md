@@ -16,5 +16,5 @@ go get -v -u github.com/google/go-querystring
 
 
 ```
-protoc --go_out=plugins=grpc:paths=source_relative:. im/*.proto
+protoc --go_out=plugins=grpc,paths=source_relative:. im/*.proto
 ```
