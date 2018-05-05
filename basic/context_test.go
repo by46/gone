@@ -139,3 +139,93 @@ func TestTimeoutContext2(t *testing.T) {
 
 	time.Sleep(time.Second * 2)
 }
+
+func TestMultipleCancelContext(t *testing.T) {
+	ctx, _ := context.WithCancel(context.Background())
+	ctx2, cancel := context.WithCancel(ctx)
+
+	defer cancel()
+	fmt.Println(ctx2)
+}
+
+type ValueContext struct {
+	context.Context
+	key, value interface{}
+}
+
+func (c *ValueContext) String() string {
+	return fmt.Sprintf("%v.ValueContext(%#v, %#v)", c.Context, c.key, c.value)
+}
+func (c *ValueContext) Value(key interface{}) interface{} {
+	if c.key == key {
+		return c.value
+	}
+	return c.Context.Value(key)
+}
+
+func TestCustomerContext(t *testing.T) {
+
+	ctx3, _ := context.WithCancel(context.Background())
+	ctx := &ValueContext{Context: ctx3, key: "benjamin", value: "red"}
+	ctx2, cancel := context.WithCancel(ctx)
+
+	defer cancel()
+	fmt.Println(ctx2)
+	fmt.Println(ctx2.Value("benjamin"))
+	time.Sleep(time.Second * 2)
+	cancel()
+}
+
+func Process(ctx context.Context) {
+	ctx, _ = context.WithTimeout(ctx, time.Second)
+	go CPUProcess(ctx)
+	go MemoryProcess(ctx)
+	go DiskProcess(ctx)
+
+}
+func CPUProcess(ctx context.Context) {
+	for {
+		select {
+		case <-ctx.Done():
+			fmt.Println("cpu end")
+			return
+		default:
+			fmt.Println("process cpu")
+			time.Sleep(time.Millisecond * 100)
+		}
+	}
+}
+func MemoryProcess(ctx context.Context) {
+	for {
+		select {
+		case <-ctx.Done():
+			fmt.Println("memory end")
+			return
+		default:
+			fmt.Println("process memory")
+			time.Sleep(time.Millisecond * 100)
+		}
+	}
+}
+func DiskProcess(ctx context.Context) {
+	for {
+		select {
+		case <-ctx.Done():
+			fmt.Println("disk end")
+			return
+		default:
+			fmt.Println("process disk")
+			time.Sleep(time.Millisecond * 100)
+		}
+	}
+}
+
+func TestMultipleContext(t *testing.T) {
+	ctx, cancel := context.WithCancel(context.Background())
+
+	go Process(ctx)
+
+	time.Sleep(time.Second * 3)
+	fmt.Println("cancel from main process")
+	cancel()
+}
