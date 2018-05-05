@@ -1,0 +1,273 @@
+hash: d0d6d54ab4637a80822c662d2704dcc2e4976f4bb5ef31786675b5162cd1fde7
+updated: 2018-04-14T11:31:21.6655764+08:00
+imports:
+- name: github.com/ajg/form
+  version: 523a5da1a92f01b01f840b61689c0340a0243532
+- name: github.com/anthonynsimon/bild
+  version: 35fd1904d43f809ded0959922164885e25577aa2
+  subpackages:
+  - adjust
+  - blend
+  - blur
+  - clone
+  - convolution
+  - effect
+  - fcolor
+  - imgio
+  - math/f64
+  - parallel
+  - transform
+  - util
+- name: github.com/aymerick/raymond
+  version: b565731e1464263de0bda75f2e45d97b54b60110
+  subpackages:
+  - ast
+  - lexer
+  - parser
+- name: github.com/BurntSushi/toml
+  version: a368813c5e648fee92e5f6c30e3944ff9d5e8895
+- name: github.com/coreos/etcd
+  version: 03cf9c45f81709a561b75dad51e808fec7bcbc70
+  subpackages:
+  - raft
+  - raft/raftpb
+- name: github.com/davecgh/go-spew
+  version: 8991bc29aa16c548c550c7ff78260e27b9ab7c73
+  subpackages:
+  - spew
+- name: github.com/dgrijalva/jwt-go
+  version: 06ea1031745cb8b3dab3f6a236daf2b0aa468b7e
+- name: github.com/disintegration/imaging
+  version: 79acd08cea8365df9fc16cccaeb3509b4495e241
+- name: github.com/eknkc/amber
+  version: cdade1c073850f4ffc70a829e31235ea6892853b
+  subpackages:
+  - parser
+- name: github.com/fatih/structs
+  version: ebf56d35bba727c68ac77f56f2fcf90b181851aa
+- name: github.com/flosch/pongo2
+  version: e7cf9ea5ca9c574f3fd5f83f7eed4a6162a67dea
+- name: github.com/gavv/monotime
+  version: 6f8212e8d10df7383609d3c377ca08884d8f3ec0
+- name: github.com/gin-contrib/sse
+  version: 22d885f9ecc78bf4ee5d72b937e4bbcdc58e8cae
+- name: github.com/gin-gonic/gin
+  version: d459835d2b077e44f7c9b453505ee29881d5d12d
+  subpackages:
+  - binding
+  - render
+- name: github.com/gogo/protobuf
+  version: 1ef32a8b9fc3f8ec940126907cedb5998f6318e4
+  subpackages:
+  - gogoproto
+  - proto
+  - protoc-gen-gogo/descriptor
+- name: github.com/golang/protobuf
+  version: e09c5db296004fbe3f74490e84dcd62c3c5ddb1b
+  subpackages:
+  - proto
+- name: github.com/google/go-querystring
+  version: 53e6ce116135b80d037921a7fdd5138cf32d7a8a
+  subpackages:
+  - query
+- name: github.com/gorilla/websocket
+  version: eb925808374e5ca90c83401a40d711dc08c0c0f6
+- name: github.com/imkira/go-interpol
+  version: 5accad8134979a6ac504d456a6c7f1c53da237ca
+- name: github.com/iris-contrib/formBinder
+  version: ad9fb86c356f971f30319c40ddbdcf72129a2791
+- name: github.com/iris-contrib/httpexpect
+  version: ebe99fcebbcedf6e7916320cce24c3e1832766ac
+- name: github.com/Joker/jade
+  version: b6dd4ee919ca1c60a97e27b16868a5223f32033b
+- name: github.com/json-iterator/go
+  version: f89479f5c0d83b365504d632ab57390447bb406a
+- name: github.com/juju/errors
+  version: c7d06af17c68cd34c835053720b21f6549d9b0ee
+- name: github.com/kataras/golog
+  version: 03be101463868edc5a81f094fc68a5f6c1b5503a
+- name: github.com/kataras/iris
+  version: 677f1e567754659f2d02afae0f40aa614a5f202e
+  subpackages:
+  - cache
+  - cache/cfg
+  - cache/client
+  - cache/client/rule
+  - cache/entry
+  - cache/ruleset
+  - cache/uri
+  - context
+  - core/errors
+  - core/handlerconv
+  - core/host
+  - core/memstore
+  - core/netutil
+  - core/router
+  - core/router/macro
+  - core/router/macro/interpreter/ast
+  - core/router/macro/interpreter/lexer
+  - core/router/macro/interpreter/parser
+  - core/router/macro/interpreter/token
+  - core/router/node
+  - httptest
+  - middleware/basicauth
+  - middleware/logger
+  - middleware/recover
+  - mvc
+  - mvc/activator
+  - mvc/activator/field
+  - mvc/activator/methodfunc
+  - mvc/activator/model
+  - mvc/activator/persistence
+  - sessions
+  - view
+- name: github.com/kataras/pio
+  version: 825e39f34365e7db2c9fbc3692c16220e3bd7418
+  subpackages:
+  - terminal
+- name: github.com/kataras/survey
+  version: 00934ae069eda15df26fa427ac393e67e239380c
+  subpackages:
+  - core
+  - terminal
+- name: github.com/klauspost/compress
+  version: 5fb1f31b0a61e9858f12f39266e059848a5f1cea
+  subpackages:
+  - flate
+  - gzip
+- name: github.com/klauspost/cpuid
+  version: e7e905edc00ea8827e58662220139109efea09db
+- name: github.com/labstack/echo
+  version: cec7629194fe4bf83b0c72d9a02d340c7a1468ac
+  subpackages:
+  - middleware
+- name: github.com/labstack/gommon
+  version: 3bc2d333a4c30531c47051369043bcabd62ff4c0
+  subpackages:
+  - bytes
+  - color
+  - log
+  - random
+- name: github.com/mattn/go-colorable
+  version: efa589957cd060542a26d2dd7832fd6a6c6c3ade
+- name: github.com/mattn/go-isatty
+  version: 6ca4dbf54d38eea1a992b3c722a76a5d1c4cb25c
+- name: github.com/mgutz/ansi
+  version: 9520e82c474b0a04dd04f8a40959027271bab992
+- name: github.com/mholt/binding
+  version: f4f58459f5f7f67cb8fb4a72a905a4ca63fead83
+- name: github.com/microcosm-cc/bluemonday
+  version: 995366fdf961d03629cd17361bddd32745718e2c
+- name: github.com/modern-go/concurrent
+  version: bacd9c7ef1dd9b15be4a9909b8ac7a4e313eec94
+- name: github.com/modern-go/reflect2
+  version: 05fbef0ca5da472bbf96c9322b84a53edc03c9fd
+- name: github.com/moul/http2curl
+  version: 9ac6cf4d929b2fa8fd2d2e6dec5bb0feb4f4911d
+- name: github.com/pmezard/go-difflib
+  version: 792786c7400a136282c1664665ae0a8db921c6c2
+  subpackages:
+  - difflib
+- name: github.com/russross/blackfriday
+  version: 55d61fa8aa702f59229e6cff85793c22e580eaf5
+- name: github.com/ryanuber/columnize
+  version: abc90934186a77966e2beeac62ed966aac0561d5
+- name: github.com/satori/go.uuid
+  version: 36e9d2ebbde5e3f13ab2e25625fd453271d6522e
+- name: github.com/sergi/go-diff
+  version: 24e2351369ec4949b2ed0dc5c477afdd4c4034e8
+  repo: https://github.com/sergi/go-diff
+  subpackages:
+  - diffmatchpatch
+- name: github.com/skratchdot/open-golang
+  version: 75fb7ed4208cf72d323d7d02fd1a5964a7a9073c
+  subpackages:
+  - open
+- name: github.com/stretchr/testify
+  version: 12b6f73e6084dad08a7c6e575284b177ecafbc71
+  subpackages:
+  - assert
+  - require
+- name: github.com/tylerb/graceful
+  version: 4654dfbb6ad53cb5e27f37d99b02e16c1872fbbb
+- name: github.com/ugorji/go
+  version: f3cacc17c85ecb7f1b6a9e373ee85d1480919868
+  subpackages:
+  - codec
+- name: github.com/valyala/bytebufferpool
+  version: e746df99fe4a3986f4d4f79e13c1e0117ce9c2f7
+- name: github.com/valyala/fasttemplate
+  version: dcecefd839c4193db0d35b88ec65b4c12d360ab0
+- name: github.com/xeipuuv/gojsonpointer
+  version: 4e3ac2762d5f479393488629ee9370b50873b3a6
+- name: github.com/xeipuuv/gojsonreference
+  version: bd5ef7bd5415a7ac448318e64f11a24cd21e594b
+- name: github.com/xeipuuv/gojsonschema
+  version: 2c8e4be869c17540b336bab0ea18b8d73e6a28b7
+- name: github.com/yalp/jsonpath
+  version: 024efa345fa9e1e6574b31ca937d71fd09da80d1
+- name: github.com/yudai/gojsondiff
+  version: e21612694bdd50975f93cd5eaccb457477128e28
+  subpackages:
+  - formatter
+- name: github.com/yudai/golcs
+  version: d1c525dea8ce39ea9a783d33cf08932305373f2c
+  repo: https://github.com/yudai/golcs
+- name: golang.org/x/crypto
+  version: d6449816ce06963d9d136eee5a56fca5b0616e7e
+  subpackages:
+  - acme
+  - acme/autocert
+- name: golang.org/x/image
+  version: f315e440302883054d0c2bd85486878cb4f8572c
+  subpackages:
+  - bmp
+  - font
+  - font/basicfont
+  - math/fixed
+  - tiff
+  - tiff/lzw
+- name: golang.org/x/net
+  version: 61147c48b25b599e5b561d2e9c4f3e1ef489ca41
+  subpackages:
+  - html
+  - html/atom
+  - publicsuffix
+  - websocket
+- name: golang.org/x/sys
+  version: f6f352972f061230a99fbf49d1eb8073ebdb36cb
+  subpackages:
+  - unix
+- name: gopkg.in/go-playground/validator.v8
+  version: 5f1438d3fca68893a817e4a66806cea46a9e4ebf
+- name: gopkg.in/h2non/filetype.v1
+  version: cc14fdc9ca0e4c2bafad7458f6ff79fd3947cfbb
+  subpackages:
+  - matchers
+  - types
+- name: gopkg.in/yaml.v2
+  version: 5420a8b6744d3b0345ab293f6fcba19c978f1183
+testImports:
+- name: github.com/golang/freetype
+  version: e2365dfdc4a05e4b8299a783240d4a7d5a65d4e4
+  subpackages:
+  - raster
+  - truetype
+- name: github.com/gorilla/http
+  version: 5dff1c014197bd33cbefc3ff9de164ada759b81b
+  subpackages:
+  - client
+- name: github.com/jsummers/gobmp
+  version: e2ba15ffa76e4db3c90ae9e7c4b1c32a411207a4
+- name: github.com/lazywei/go-opencv
+  version: fb0a687051c795176e0698f358231f2ab1585bcb
+  subpackages:
+  - opencv
+- name: github.com/magiconair/properties
+  version: 2c9e9502788518c97fe44e8955cd069417ee89df
+  subpackages:
+  - assert
+- name: github.com/mitchellh/mapstructure
+  version: 00c29f56e2386353d58c599509e8dc3801b0d716
+- name: github.com/pressly/goico
+  version: e9cfaf32013bea3c8deb2c476155d843a088003e
