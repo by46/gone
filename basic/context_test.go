@@ -103,6 +103,7 @@ func Monitor(ctx context.Context, worker int) {
 	}
 
 }
+
 func TestCancelContext(t *testing.T) {
 	ctx, cancel := context.WithCancel(context.Background())
 	go Monitor(ctx, 1)
@@ -113,4 +114,28 @@ func TestCancelContext(t *testing.T) {
 	fmt.Println("stop monitoring")
 	cancel()
 	time.Sleep(time.Second)
+}
+
+func TestTimeoutContext2(t *testing.T) {
+	go func() {
+		ctx, cancel := context.WithTimeout(context.Background(), time.Second)
+		defer cancel()
+
+		go func(ctx context.Context) {
+			for {
+				select {
+				case <-ctx.Done():
+					fmt.Println("end")
+					return
+				default:
+					fmt.Println("monitor")
+					time.Sleep(time.Millisecond * 200)
+				}
+			}
+		}(ctx)
+		fmt.Println("waiting")
+		time.Sleep(time.Millisecond * 1500)
+	}()
+
+	time.Sleep(time.Second * 2)
 }
