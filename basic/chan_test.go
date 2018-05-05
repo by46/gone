@@ -2,10 +2,9 @@ package basic
 
 import (
 	"testing"
-	"time"
 )
 
 func TestChan(t *testing.T) {
-	var writeCh <-chan time.Time
-	writeCh <- time.Now()
+	//var writeCh <-chan time.Time
+	////writeCh <- time.Now()
 }
