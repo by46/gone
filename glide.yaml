@@ -21,3 +21,5 @@ import:
   - middleware
 - package: github.com/tylerb/graceful
   version: v1.2.15
+- package: gopkg.in/h2non/filetype.v1
+  version: ^1.0.5
