@@ -6,3 +6,6 @@ image/sample*
 image/*-mix.png
 effect/horses-*.jpg
 *.exe
+*.tar
+vendor
+tmp.tar.gz

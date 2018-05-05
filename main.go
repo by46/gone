@@ -23,7 +23,8 @@ func main() {
 	//handler := web.EchoWSServe()
 	//handler := web.EchoGorillaServe()
 	//handler := web.EchoGorilla2Serve()
-	handler := web.ServeEchoCache()
+	//handler := web.ServeEchoCache()
+	handler := web.MuxServe()
 	srv := &http.Server{
 		Addr:    ":8080",
 		Handler: handler,

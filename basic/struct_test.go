@@ -1,24 +1,31 @@
 package basic
 
 import (
-	"testing"
 	"fmt"
+	"testing"
 )
 
-type demo1 struct {
-	int
-}
-type demo2 struct {
-	float32
-	*demo1
+type Singer interface {
+	Song()
 }
 
-func TestEmbedStruct(t *testing.T) {
-	d := &demo2{
-		float32: 12.0,
-		demo1:   &demo1{1,},
-	}
+type Parrot struct{}
 
-	fmt.Printf("demo %v\n", d.demo1.int)
-	fmt.Printf("demo2 %v\n", d.int)
+func (p *Parrot) Song() {
+	fmt.Println("song ")
+}
+
+type Cock struct {
+	Singer
+}
+
+func (c *Cock) Song() {
+	fmt.Println("song with cock")
+}
+
+func TestEmbedInterface(t *testing.T) {
+	cock := &Cock{Singer: &Parrot{}}
+	cock.Song()
+	cock = &Cock{}
+	cock.Song()
 }

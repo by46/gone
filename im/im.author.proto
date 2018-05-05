@@ -1,0 +1,8 @@
+syntax = "proto2";
+
+package im;
+
+message Author {
+    required string Name = 1;
+    repeated int32 Ages = 2;
+}

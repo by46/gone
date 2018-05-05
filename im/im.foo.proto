@@ -1,0 +1,36 @@
+syntax = "proto3";
+package im;
+
+import "google/protobuf/descriptor.proto";
+
+extend google.protobuf.MessageOptions {
+    string newegg_watch = 51234;
+}
+
+message Foo {
+    int32 Id = 1;
+}
+
+message Info {
+    oneof test_oneof {
+        string Name = 4;
+        bool Marriage = 5;
+        string Address = 6;
+    }
+}
+message DFIS {
+    option (newegg_watch) = "dfis";
+    int32 ID = 1;
+}
+
+service Greeter {
+    rpc SayHello (HelloRequest) returns (HelloReply);
+    rpc SayHelloAgain (HelloRequest) returns (HelloReply);
+}
+
+message HelloRequest {
+    string name = 1;
+}
+message HelloReply {
+    string message = 1;
+}
