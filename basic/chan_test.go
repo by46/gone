@@ -6,6 +6,8 @@ import (
 )
 
 func TestChan(t *testing.T) {
-	var writeCh <-chan time.Time
+	writeCh := make(chan time.Time)
 	writeCh <- time.Now()
+	close(writeCh)
+	<-writeCh
 }
