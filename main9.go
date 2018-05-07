@@ -82,16 +82,19 @@ func channel(guard *sync.WaitGroup) {
 	//done := time.After(30 * time.Second)
 	echo := make(chan []byte)
 	go readStdin(ctx, echo)
+	// goroutine leak
 	for {
 		select {
 		case data := <-echo:
 			os.Stdout.Write(data)
+			cancel()
 		case <-ctx.Done():
 			fmt.Println("timeout")
 			return
 		}
 	}
 }
+
 func readStdin(ctx context.Context, out chan<- []byte) {
 	for {
 		select {
@@ -99,6 +102,7 @@ func readStdin(ctx context.Context, out chan<- []byte) {
 			fmt.Println("cancel from out side")
 			return
 		default:
+			fmt.Println("select case default")
 			data := make([]byte, 1024)
 			l, _ := os.Stdin.Read(data)
 			if l > 0 {
@@ -107,14 +111,74 @@ func readStdin(ctx context.Context, out chan<- []byte) {
 		}
 	}
 }
+
+func closeChannel(guard *sync.WaitGroup) {
+	defer guard.Done()
+
+	msg := make(chan string)
+	done := make(chan bool)
+	until := time.After(time.Second * 5)
+
+	//go send(msg)
+	//go sendProperly(msg)
+	go sendProperly2(msg, done)
+	for {
+		select {
+		case m := <-msg:
+			fmt.Println("replay:", m)
+			if m == "" {
+				return
+			}
+		case <-until:
+			done <- true
+			fmt.Println("close channel completed")
+			time.Sleep(500 * time.Millisecond)
+			return
+		default:
+			fmt.Println("**yawn**")
+			time.Sleep(100 * time.Millisecond)
+		}
+	}
+}
+
+func send(ch chan string) {
+	for {
+		ch <- "hello"
+		time.Sleep(500 * time.Millisecond)
+	}
+}
+func sendProperly(ch chan string) {
+	time.Sleep(120 * time.Millisecond)
+	ch <- "hello"
+	close(ch)
+	fmt.Println("send end")
+}
+
+func sendProperly2(ch chan string, done chan bool) {
+	for {
+		select {
+		case <-done:
+			fmt.Println("done")
+			close(done)
+			close(ch)
+			return
+		default:
+			ch <- "hello"
+			time.Sleep(500 * time.Millisecond)
+		}
+	}
+}
 func main() {
 	guard := new(sync.WaitGroup)
-	guard.Add(1)
-	go concurrency(guard)
+	//guard.Add(1)
+	//go concurrency(guard)
+	//
+	//guard.Add(1)
+	//go channel(guard)
 
 	guard.Add(1)
-	go channel(guard)
+	go closeChannel(guard)
 
 	guard.Wait()
-	time.Sleep(2 * time.Second)
+	time.Sleep(5 * time.Second)
 }
