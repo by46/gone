@@ -1,13 +1,13 @@
 package main
 
 import (
-	"os"
 	"bufio"
+	"context"
+	"fmt"
+	"os"
 	"strings"
 	"sync"
-	"fmt"
 	"time"
-	"context"
 )
 
 type words struct {
