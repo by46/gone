@@ -36,8 +36,26 @@ func TestChanClose(t *testing.T) {
 			doCancel()
 		case message, success := <-stopTimerCh:
 			fmt.Printf("receive message %v, %v", message, success)
+			timer.Stop()
 		}
 	}()
 
 	wg.Wait()
+}
+
+func TestChanNil(t *testing.T) {
+	var ch chan int
+	ch = nil
+	time.AfterFunc(time.Second, func() {
+		if ch != nil {
+			close(ch)
+		}
+	})
+	select {
+	case <-time.NewTimer(time.Millisecond * 100).C:
+		fmt.Printf("timeout\n")
+	case message, success := <-ch:
+		fmt.Printf("receive %v %v", message, success)
+	}
+	fmt.Printf("success")
 }
