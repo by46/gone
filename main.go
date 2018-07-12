@@ -29,5 +29,6 @@ func main() {
 		Addr:    ":8080",
 		Handler: handler,
 	}
+	srv.SetKeepAlivesEnabled(true)
 	srv.ListenAndServe()
 }
