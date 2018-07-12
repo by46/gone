@@ -20,10 +20,20 @@ func TestChanClose(t *testing.T) {
 	wg.Add(1)
 
 	stopTimerCh := make(chan struct{})
-	time.AfterFunc(time.Second*2, func() { close(stopTimerCh) })
+	var once sync.Once
+	doCancel := func() {
+		once.Do(func() {
+			close(stopTimerCh)
+		})
+	}
+	timer := time.NewTimer(time.Second * 2)
+	time.AfterFunc(time.Second*2, doCancel)
 	go func() {
 		defer wg.Done()
 		select {
+		case <-timer.C:
+			fmt.Printf("do cancel because time")
+			doCancel()
 		case message, success := <-stopTimerCh:
 			fmt.Printf("receive message %v, %v", message, success)
 		}
