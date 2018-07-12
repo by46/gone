@@ -35,3 +35,35 @@ func TestJSON2(t *testing.T) {
 	}
 	fmt.Printf("datetime format %v\n", entity)
 }
+
+func TestJsonUnmarshal(t *testing.T) {
+	assertion := assert.New(t)
+	content := []byte(`{
+		"firstName": "Jean",
+		"lastName": "Bartik",
+		"age": 86,
+		"education": [
+		{
+		"institution": "Northwest Missouri State Teachers College",
+		"degree": "Bachelor of Science in Mathematics"
+		},
+		{
+		"institution": "University of Pennsylvania",
+		"degree": "Masters in English"
+		}
+		],
+		"spouse": "William Bartik",
+		"children": [
+		"Timothy John Bartik",
+		"Jane Helen Bartik",
+		"Mary Ruth Bartik"
+		]
+		}`)
+
+	var f interface{}
+	err := jsoniter.Unmarshal(content, &f)
+	assertion.Nil(err)
+
+	fmt.Println(f)
+
+}

@@ -11,8 +11,16 @@ func Handler(writer http.ResponseWriter, request *http.Request) {
 	writer.WriteHeader(http.StatusInternalServerError)
 }
 
+func MissingContentLength(writer http.ResponseWriter, request *http.Request) {
+	writer.WriteHeader(http.StatusOK)
+	for i := 0; i < 1000; i++ {
+
+		writer.Write([]byte("hello worldhello worldhello worldhello worldhello worldhello worldhello world"))
+	}
+}
 func MuxServe() http.Handler {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", Handler)
+	mux.HandleFunc("/miss", MissingContentLength)
 	return mux
 }
