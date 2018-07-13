@@ -1,3 +1,5 @@
+// +build go1.8
+
 package basic
 
 import (
@@ -36,7 +38,7 @@ func TestContext(t *testing.T) {
 }
 
 func TestDeadlineContext(t *testing.T) {
-	d := time.Now().Add(50 * time.Millisecond)
+	d := time.Now().Add(5000 * time.Millisecond)
 
 	ctx, cancel := context.WithDeadline(context.Background(), d)
 	defer cancel()
@@ -156,6 +158,7 @@ type ValueContext struct {
 func (c *ValueContext) String() string {
 	return fmt.Sprintf("%v.ValueContext(%#v, %#v)", c.Context, c.key, c.value)
 }
+
 func (c *ValueContext) Value(key interface{}) interface{} {
 	if c.key == key {
 		return c.value
@@ -183,6 +186,7 @@ func Process(ctx context.Context) {
 	go DiskProcess(ctx)
 
 }
+
 func CPUProcess(ctx context.Context) {
 	for {
 		select {
@@ -195,6 +199,7 @@ func CPUProcess(ctx context.Context) {
 		}
 	}
 }
+
 func MemoryProcess(ctx context.Context) {
 	for {
 		select {
@@ -207,6 +212,7 @@ func MemoryProcess(ctx context.Context) {
 		}
 	}
 }
+
 func DiskProcess(ctx context.Context) {
 	for {
 		select {
@@ -222,10 +228,13 @@ func DiskProcess(ctx context.Context) {
 
 func TestMultipleContext(t *testing.T) {
 	ctx, cancel := context.WithCancel(context.Background())
-
 	go Process(ctx)
 
-	time.Sleep(time.Second * 3)
-	fmt.Println("cancel from main process")
+	select {
+	case <-ctx.Done():
+		fmt.Printf("done")
+	case <-time.NewTimer(time.Second * 3).C:
+		fmt.Printf("sleep 3 time")
+	}
 	cancel()
 }

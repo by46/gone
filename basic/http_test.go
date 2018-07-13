@@ -121,11 +121,17 @@ func TestHttpTraceClient(t *testing.T) {
 func TestHttpSimpleRequest(t *testing.T) {
 	client := &http.Client{
 		Timeout: 10 * time.Second,
+		Transport: &http.Transport{
+			DialContext: (&net.Dialer{
+				KeepAlive: 2 * time.Second,
+			}).DialContext,
+		},
 	}
 	response, err := client.Get("http://scmesos04/benjamin/test/diagnosis.txt")
 	assert.Nil(t, err)
 	defer response.Body.Close()
 	ioutil.ReadAll(response.Body)
 
+	time.Sleep(5 * time.Second)
 	fmt.Printf("status code: %v", response.StatusCode)
 }
