@@ -1,6 +1,7 @@
 package basic
 
 import (
+	"context"
 	"io/ioutil"
 	"net"
 	"net/http"
@@ -134,4 +135,20 @@ func TestHttpSimpleRequest(t *testing.T) {
 
 	time.Sleep(5 * time.Second)
 	fmt.Printf("status code: %v", response.StatusCode)
+}
+
+func TestHttpSimpleRequestWithTimeout(t *testing.T) {
+	req, _ := http.NewRequest("GET", "http://scmesos04/benjamin/test/diagnosis.txt", nil)
+
+	ctx, cancel := context.WithTimeout(req.Context(), time.Millisecond*100)
+	defer cancel()
+	req = req.WithContext(ctx)
+	response, err := http.DefaultClient.Do(req)
+	if err != nil {
+		fmt.Printf("error %v", err)
+	} else {
+		fmt.Printf("response %v", response.StatusCode)
+	}
+	time.Sleep(time.Second)
+
 }

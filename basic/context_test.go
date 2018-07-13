@@ -238,3 +238,58 @@ func TestMultipleContext(t *testing.T) {
 	}
 	cancel()
 }
+
+type message struct {
+	responseChan chan<- int
+	parameter    string
+	ctx          context.Context
+}
+
+func ProcessMessages(work <-chan message) {
+	for job := range work {
+		select {
+		case <-job.ctx.Done():
+			continue
+		default:
+		}
+		result := len(job.parameter)
+		select {
+		case <-job.ctx.Done():
+		case job.responseChan <- result:
+		}
+	}
+}
+
+func NewRequest(ctx context.Context, input string, q chan<- message) {
+	r := make(chan int)
+	select {
+	case <-ctx.Done():
+		fmt.Println("Context ended before q cloud see message")
+		return
+	case q <- message{
+		responseChan: r,
+		parameter:    input,
+		ctx:          ctx,
+	}:
+	}
+
+	select {
+	case out := <-r:
+		fmt.Printf("the len of %s is %d\n", input, out)
+	case <-ctx.Done():
+		fmt.Println("Context ended before q cloud process message")
+	}
+}
+
+func TestChannelProcessModel(t *testing.T) {
+	q := make(chan message)
+	go ProcessMessages(q)
+	ctx := context.Background()
+	ctx, cancel := context.WithTimeout(ctx, time.Nanosecond)
+	defer cancel()
+	time.Sleep(time.Microsecond)
+	
+	NewRequest(ctx, "hei", q)
+	NewRequest(ctx, "hello world", q)
+	close(q)
+}
