@@ -288,7 +288,7 @@ func TestChannelProcessModel(t *testing.T) {
 	ctx, cancel := context.WithTimeout(ctx, time.Nanosecond)
 	defer cancel()
 	time.Sleep(time.Microsecond)
-	
+
 	NewRequest(ctx, "hei", q)
 	NewRequest(ctx, "hello world", q)
 	close(q)
