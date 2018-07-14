@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-var c = make(chan int,1)
+var c = make(chan int, 1)
 var a string
 
 func f() {
@@ -14,7 +14,7 @@ func f() {
 }
 func main() {
 	go f()
-	time.Sleep(time)
+	time.Sleep(time.Millisecond)
 	c <- 0
 	fmt.Println(a)
 }
