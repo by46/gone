@@ -95,6 +95,7 @@ func TestCacheLRU(t *testing.T) {
 	wg.Wait()
 	fmt.Printf("LRU size: %d", cache.Size())
 }
+
 func TestSemaphore(t *testing.T) {
 	var wg sync.WaitGroup
 	var count int
@@ -112,4 +113,18 @@ func TestSemaphore(t *testing.T) {
 	}
 	wg.Wait()
 	fmt.Printf("count: %v", count)
+}
+
+func TestHappenBefore(t *testing.T) {
+	var c = make(chan int, 10)
+	var a string
+	f := func() {
+		time.Sleep(time.Millisecond*100)
+		a = "hello world"
+		c <- 0
+	}
+	go f()
+	<-c
+	fmt.Println(a)
+	time.Sleep(time.Second)
 }
